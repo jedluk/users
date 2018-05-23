@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "Jędrzej Łukasiuk",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "node-fetch": "^2.1.2"
+  }
 }

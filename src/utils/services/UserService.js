@@ -1,13 +1,14 @@
 const fetch = require("node-fetch");
 
-class Service {
+class UserService {
   constructor(url = "https://jsonplaceholder.typicode.com/users") {
     this.url = url;
   }
 
   get(url = this.url, id) {
+    const getURL = `${url}`;
     return new Promise((res, rej) => {
-      fetch(url)
+      fetch(getURL)
         .then(res => res.json())
         .then(data => res(data))
         .catch(err => rej(err));

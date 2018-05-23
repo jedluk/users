@@ -1,2 +1,6 @@
 node_modules
 playground
+dist/index.html
+dist/main.js
+package-lock.json
+server/

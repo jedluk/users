@@ -5,7 +5,7 @@ import CustomLink from './CustomLink';
 export default () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div className="container">
-      <div className="navbar-brand" >Users Brand</div>
+      <div className="navbar-brand" >Users</div>
       <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -18,7 +18,7 @@ export default () => (
         <ul className="navbar-nav ml-auto">
           <li className="nav-item dropdown mr-3">
             <Link className="nav-link dropdown-toggle" data-toggle="dropdown" to="#">
-              <i className="fa fa-user"></i> Welcome root
+              <i className="fa fa-user"></i> Welcome root(store!)
             </Link>
             <div className="dropdown-menu">
               <Link className="dropdown-item" to="#">

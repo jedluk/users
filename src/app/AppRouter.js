@@ -1,17 +1,23 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import createHistory from "history/createBrowserHistory";
-import Home from "./home/Home";
-import Header from "./common/Header";
+import Login from "./home/Login";
+import Dashboard from "./dashboard/Dashboard";
+import Management from "./management/Management";
+import NotFoundPage from './common/NotFoundPage';
 
 export const history = createHistory();
 
 const AppRouter = () => (
   <Router history={history}>
     <div>
-      <Header />
       <Switch>
-        <Route path="/" component={Home} exact={true} />
+        <Route path="/" component={Login} exact={true} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/management" component={Management} />
+        {/* <PrivateRoute path="/dashboard" component={Dashboard}  /> */}
+        {/* <PrivateRoute path="/management" component={Dashboard} /> */}
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   </Router>

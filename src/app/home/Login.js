@@ -20,15 +20,16 @@ export class Login extends Component {
 
   handleLogin(evt) {
     evt.preventDefault();
-    userService.login(this.state.name, this.state.password)
+    userService
+      .login(this.state.name, this.state.password)
       .then(res => {
         const { status } = res;
-        if (status === 'correct'){
-          this.props.history.push('/dashboard');
+        if (status === "correct") {
+          this.props.history.push("/dashboard");
         } else {
-          this.setState({incorrectCredentials: true});
+          this.setState({ incorrectCredentials: true });
           setTimeout(() => {
-            this.setState({incorrectCredentials: false});
+            this.setState({ incorrectCredentials: false });
           }, 3000);
         }
       })
@@ -37,9 +38,10 @@ export class Login extends Component {
 
   render() {
     return (
-        <div className="container mt-5">
+      <div className="loginBody">
+        <div className="container loginBox">
           <div className="row">
-            <div className="mx-auto col-md-6">
+            <div className="mx-auto col-md-5">
               <div className="card">
                 <div className="card-header">
                   <div className="d-flex justify-content-center align-items-center">
@@ -67,7 +69,11 @@ export class Login extends Component {
                         onChange={this.handleChange}
                       />
                     </div>
-                    {this.state.incorrectCredentials ? <div className="my-2 text-danger">Incorrect pair</div> : ""}
+                    {this.state.incorrectCredentials ? (
+                      <div className="my-2 text-danger">Incorrect pair</div>
+                    ) : (
+                      ""
+                    )}
                     <input
                       type="submit"
                       className="btn btn-dark btn-block"
@@ -79,6 +85,7 @@ export class Login extends Component {
             </div>
           </div>
         </div>
+      </div>
     );
   }
 }

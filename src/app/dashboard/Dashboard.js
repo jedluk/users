@@ -17,9 +17,7 @@ export default class Dashboard extends Component {
     userService
       .getUser()
       .then(data => {
-        setTimeout(() => {
-          this.setState({ users: data });
-        }, 500);
+        this.setState({ users: data });
       })
       .catch(e => console.log(e));
   }
@@ -55,7 +53,7 @@ export default class Dashboard extends Component {
                           <td>{user.email}</td>
                           <td>{user.phone}</td>
                           <td>
-                          <Link className="btn btn-secondary" to="/management">
+                          <Link className="btn btn-secondary" to={{ pathname: `/management/${user.id}`, userId: user.id}}>
                               <i className="fa fa-angle-double-right" /> More
                           </Link>
                           </td>

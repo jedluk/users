@@ -13,7 +13,6 @@ export default () => (
         <ul className="navbar-nav">
           <CustomLink text="Dashboard" path="dashboard" />
           <CustomLink text="Management" path="management" />
-          <CustomLink text="Add New User" path="management" />
         </ul>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item dropdown mr-3">

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userService } from "../../utils/services/user.service";
+import { login } from './auth/actions';
 
-export class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +26,7 @@ export class Login extends Component {
       .then(res => {
         const { status } = res;
         if (status === "correct") {
-          this.props.history.push("/dashboard");
+          this.props.login(this.state.name);
         } else {
           this.setState({ incorrectCredentials: true });
           setTimeout(() => {
@@ -90,8 +91,8 @@ export class Login extends Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   login: (name, password) => dispatch(login(name, password))
-// });
+const mapDispatchToProps = dispatch => ({
+  login: (name) => dispatch(login(name))
+});
 
-export default Login;
+export default connect(undefined,mapDispatchToProps)(Login);

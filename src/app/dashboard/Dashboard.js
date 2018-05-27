@@ -24,8 +24,6 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <div>
-        <Header />
         <div className="container mt-5">
           <div className="row">
             <div className="col">
@@ -69,8 +67,6 @@ export default class Dashboard extends Component {
             </div>
           </div>
         </div>
-        <Footer />
-      </div>
     );
   }
 }

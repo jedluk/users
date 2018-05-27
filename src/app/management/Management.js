@@ -130,11 +130,7 @@ class Mananagement extends Component {
     });
   };
 
-  validateUser = () => {
-    return (
-      this.state.user.name && this.state.user.username && this.state.user.email
-    );
-  };
+  validateUser = () => this.state.user.name && this.state.user.username && this.state.user.email;
 
   handleStickyButtonAction = () => {
     if (this.state.stickyButtonMode === "load") {
@@ -153,7 +149,6 @@ class Mananagement extends Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="container mt-4">
           <div className="row">
             <div className="col-md-9">

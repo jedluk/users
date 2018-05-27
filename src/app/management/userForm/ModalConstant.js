@@ -11,7 +11,7 @@ const userAdded = {
 };
 const userNotValid = {
   title: "Missing fields",
-  body: "Some fields are missing. Required: user, username and email"
+  body: "Some fields are missing. All fields are required"
 };
 const userDeleted = {
   title: "User deleted",

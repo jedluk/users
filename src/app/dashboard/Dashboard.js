@@ -54,7 +54,7 @@ export default class Dashboard extends Component {
                           <td>{user.phone}</td>
                           <td>
                           <Link className="btn btn-secondary" to={{ pathname: `/management/${user.id}`, userId: user.id}}>
-                              <i className="fa fa-angle-double-right" /> More
+                              <i className="fa fa-angle-double-right" /> Management
                           </Link>
                           </td>
                         </tr>
@@ -73,12 +73,4 @@ export default class Dashboard extends Component {
       </div>
     );
   }
-}
-
-{
-  /* {this.state.users.length > 0 ? (
-                this.state.users.map(user => {})
-              ) : (
-                <i className="fas fa-spinner" />
-              )} */
 }

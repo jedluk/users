@@ -12,3 +12,30 @@
 .loginBox {
   transform: translateY(-50px);
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.stickyLoader {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  margin: 5px;
+}
+
+.fade.in {
+  opacity: 1;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+.modal-backdrop.in {
+  opacity: 0.5;
+}
+
+.modal-content{
+  transform: translateY(200px);
+}

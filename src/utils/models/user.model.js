@@ -1,5 +1,5 @@
-export const userModel = {
-  id: 0,
+export default  {
+  id: Math.round(Math.random() * 10) + 10,
   name: "",
   username: "",
   email: "",

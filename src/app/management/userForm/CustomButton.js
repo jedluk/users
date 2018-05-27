@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ faclass, btnText, action }) => {
+export default ({ faclass, btnText, action, load }) => {
   let btnColor = "bg-success";
   if (btnText.toLowerCase().includes("add")) {
     btnColor = "bg-primary";
@@ -10,9 +10,8 @@ export default ({ faclass, btnText, action }) => {
 
   return (
     <div
-      className={`card text-center text-white mb-3 ${btnColor}`}
+      className={`card text-center text-white mb-3 pointer ${btnColor}`}
       onClick={action}
-      style={{cursor: "pointer"}}
     >
       <div className={`card-body ${btnColor}`}>
         <h3>{btnText} </h3>

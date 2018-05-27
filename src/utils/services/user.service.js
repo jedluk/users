@@ -1,3 +1,4 @@
+const axios = require("axios");
 const API = "https://jsonplaceholder.typicode.com/users";
 
 const login = (name, password) => {
@@ -17,55 +18,50 @@ const getUser = (id, url = API) => {
     combineURL = `${combineURL}/${id}`;
   }
   return new Promise((res, rej) => {
-    fetch(combineURL)
-      .then(res => res.json())
-      .then(data => res(data))
+    axios
+      .get(combineURL)
+      .then(response => res(response.data))
       .catch(err => rej(err));
   });
 };
 
-const postUser = (id, data, url = `${API}/post`) => {
-  let combineURL = url;
+const createUser = (data, url = API) => {
   return new Promise((res, rej) => {
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(data => res(data))
+    axios
+      .post(url, JSON.stringify(data), {
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(response => res(response.data))
       .catch(err => rej(err));
   });
 };
 
-const putUser = (id, data, url = `${API}/put`) => {
-  return new Promise((res, rej) => {
-    fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(data => res(data))
-      .catch(err => rej(err));
-  });
-};
-
-const deleteUser = (id, url = `${API}/delete`) => {
+const updateUser = (id, data, url = API) => {
   const combineURL = `${url}/${id}`;
   return new Promise((res, rej) => {
-    fetch(combineURL, {
-      method: "DELETE",
-      headers: {
-        "Content-type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(() => res("User has been deleted"))
+    axios
+      .put(combineURL, JSON.stringify(data), {
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(response => res(response.data))
+      .catch(err => rej(err));
+  });
+};
+
+const deleteUser = (id, url = API) => {
+  const combineURL = `${url}/${id}`;
+  return new Promise((res, rej) => {
+    axios
+      .delete(combineURL, {
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      .then(response => res(response.data))
       .catch(err => rej(err));
   });
 };
@@ -73,7 +69,7 @@ const deleteUser = (id, url = `${API}/delete`) => {
 export const userService = {
   login,
   getUser,
-  postUser,
-  putUser,
+  createUser,
+  updateUser,
   deleteUser
 };

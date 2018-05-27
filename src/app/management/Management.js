@@ -7,7 +7,7 @@ import CustomButton from "./userForm/CustomButton";
 import UserForm from "./userForm/UserForm";
 import userModel from "../../utils/models/user.model";
 import { userService } from "../../utils/services/user.service";
-import { ModalConstant } from "./userForm/ModalConstant";
+import ModalConstant from "./userForm/ModalConstant";
 
 class Mananagement extends Component {
   constructor(props) {
@@ -43,46 +43,49 @@ class Mananagement extends Component {
   }
 
   handleAddNewUser = () => {
+    const { ADD, ERROR, NOT_VALID } = ModalConstant.cases;
     if (this.validateUser()) {
       userService
         .createUser(this.state.user)
         .then(() => {
-          this.setState({ modalMode: "ADDED" });
+          this.setState({ modalMode: ADD });
           this.toggleModal();
         })
         .catch(() => {
-          this.setState({ modalMode: "ERROR" });
+          this.setState({ modalMode: ERROR });
           this.toggleModal();
         });
     } else {
-      this.setState({ modalMode: "NOT_VALID" });
+      this.setState({ modalMode: NOT_VALID });
       this.toggleModal();
     }
   };
 
   handleUpdateUser = () => {
+    const { UPDATED, ERROR } = ModalConstant.cases;
     userService
       .updateUser(this.state.user)
-      .then(data => {
-        this.setState({ modalMode: "UPDATED" });
+      .then(() => {
+        this.setState({ modalMode: UPDATED });
         this.toggleModal();
       })
       .catch(err => {
-        this.setState({ modalMode: "ERROR" });
+        this.setState({ modalMode: ERROR });
         this.toggleModal();
       });
     this.toggleDisabled();
   };
 
   handleDeleteUser = () => {
+    const { DELETED, ERROR } = ModalConstant.cases;
     userService
       .deleteUser(this.state.user.id)
       .then(() => {
-        this.setState({ modalMode: "DELETED" });
+        this.setState({ modalMode: DELETED });
         this.toggleModal();
       })
       .catch(() => {
-        this.setState({ modalMode: "ERROR" });
+        this.setState({ modalMode: ERROR });
         this.toggleModal();
       });
   };
@@ -130,7 +133,8 @@ class Mananagement extends Component {
     });
   };
 
-  validateUser = () => this.state.user.name && this.state.user.username && this.state.user.email;
+  validateUser = () =>
+    this.state.user.name && this.state.user.username && this.state.user.email;
 
   handleStickyButtonAction = () => {
     if (this.state.stickyButtonMode === "load") {

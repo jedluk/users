@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:dev": "npm run gulp && webpack --mode development",
-    "build:prod": "webpack --mode production",
+    "build:dev": "npm run gulp && webpack --mode development --open",
+    "build:prod": "webpack --mode production --open",
     "dev-server": "webpack-dev-server --mode development --open",
     "gulp": "gulp",
     "test": "jest"

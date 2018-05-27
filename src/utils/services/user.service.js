@@ -56,11 +56,7 @@ const deleteUser = (id, url = API) => {
   const combineURL = `${url}/${id}`;
   return new Promise((res, rej) => {
     axios
-      .delete(combineURL, {
-        headers: {
-          "Content-type": "application/json"
-        }
-      })
+      .delete(combineURL)
       .then(response => res(response.data))
       .catch(err => rej(err));
   });

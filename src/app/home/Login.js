@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userService } from "../../utils/services/user.service";
-import { login } from './auth/actions';
+import { login } from '../actions/auth/actions';
 
 class Login extends Component {
   constructor(props) {
@@ -11,15 +11,13 @@ class Login extends Component {
       password: "",
       incorrectCredentials: false
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleChange(evt) {
+  handleChange = (evt) => {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
-  handleLogin(evt) {
+  handleLogin = (evt) => {
     evt.preventDefault();
     userService
       .login(this.state.name, this.state.password)

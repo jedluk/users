@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../../actions/auth/actions';
 import CustomLink from './CustomLink';
-import { logout } from '../../home/auth/actions';
 
 const Header = ({ user, logout }) => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
@@ -13,7 +13,7 @@ const Header = ({ user, logout }) => (
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <CustomLink text="Dashboard" path="/dashboard" />
+          <CustomLink text="Dashboard" path="dashboard" />
           <CustomLink text="Add New User" path="management" />
         </ul>
         <ul className="navbar-nav ml-auto">

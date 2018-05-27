@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import Header from '../common/Header/Header';
 import Footer from '../common/Footer';
 
-export const PrivateRoute = ({
+const PrivateRoute = ({
   isAuthenticated,
   component: Component,
   ...rest

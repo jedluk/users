@@ -21,12 +21,9 @@ class Mananagement extends Component {
       modalMode: "ERROR"
     };
     this.actions = {
-      handleChangeName: this.handleChangeName,
-      handleChangeUserName: this.handleChangeUserName,
-      handleChangeEmail: this.handleChangeEmail,
-      handleChangeStreet: this.handleChangeStreet,
-      handleChangePhone: this.handleChangePhone,
-      handleChangeCompanyName: this.handleChangeCompanyName
+      handleChangeProperty: this.handleChangeProperty,
+      handleChangeNestedProperty: this.handleChangeNestedProperty,
+      handleChangeDoubleNestedProperty: this.handleChangeDoubleNestedProperty
     };
   }
 
@@ -39,8 +36,7 @@ class Mananagement extends Component {
         .catch(e => this.setState({ user: userModel }));
     } else {
       this.setState({ user: userModel, addUserMode: true, disabled: false });
-      const user = sessionStorage.getItem("user");
-      if (!user) {
+      if (!sessionStorage.getItem("user")) {
         this.setState({ user: userModel, stickyButtonMode: "save" });
       }
     }
@@ -65,9 +61,8 @@ class Mananagement extends Component {
   };
 
   handleUpdateUser = () => {
-    const user = this.state.user;
     userService
-      .updateUser(user.id, user)
+      .updateUser(this.state.user)
       .then(data => {
         this.setState({ modalMode: "UPDATED" });
         this.toggleModal();
@@ -99,40 +94,37 @@ class Mananagement extends Component {
   toggleDisabled = () => {
     this.setState({ disabled: !this.state.disabled });
   };
-  handleChangeName = evt => {
-    this.setState({ user: { ...this.state.user, name: evt.target.value } });
-  };
-  handleChangeUserName = evt => {
-    this.setState({ user: { ...this.state.user, username: evt.target.value } });
+
+  handleChangeProperty = evt => {
+    this.setState({
+      user: { ...this.state.user, [evt.target.name]: evt.target.value }
+    });
   };
 
-  handleChangeEmail = evt => {
-    this.setState({ user: { ...this.state.user, email: evt.target.value } });
-  };
-
-  handleChangePhone = evt => {
-    this.setState({ user: { ...this.state.user, phone: evt.target.value } });
-  };
-
-  handleChangeStreet = evt => {
+  handleChangeNestedProperty = evt => {
+    const [parent, child] = evt.target.name.split(".");
     this.setState({
       user: {
         ...this.state.user,
-        address: {
-          ...this.state.user.address,
-          street: evt.target.value
+        [parent]: {
+          ...this.state.user[parent],
+          [child]: evt.target.value
         }
       }
     });
   };
 
-  handleChangeCompanyName = evt => {
+  handleChangeDoubleNestedProperty = evt => {
+    const [parent, child, grandchild] = evt.target.name.split(".");
     this.setState({
       user: {
         ...this.state.user,
-        company: {
-          ...this.state.user.company,
-          name: evt.target.value
+        [parent]: {
+          ...this.state.user[parent],
+          [child]: {
+            ...this.state.user[parent][child],
+            [grandchild]: evt.target.value
+          }
         }
       }
     });
@@ -199,7 +191,9 @@ class Mananagement extends Component {
                     action={this.handleDeleteUser}
                   />
                   <CustomButton
-                    faclass={this.state.disabled ? "fas fa-pencil-alt" : ""}
+                    faclass={
+                      this.state.disabled ? "fas fa-pencil-alt" : "fas fa-save"
+                    }
                     btnText={this.state.disabled ? "Modify User" : "Save"}
                     action={
                       this.state.disabled

@@ -38,8 +38,8 @@ const createUser = (data, url = API) => {
   });
 };
 
-const updateUser = (id, data, url = API) => {
-  const combineURL = `${url}/${id}`;
+const updateUser = (data, url = API) => {
+  const combineURL = `${url}/${data.id}`;
   return new Promise((res, rej) => {
     axios
       .put(combineURL, JSON.stringify(data), {

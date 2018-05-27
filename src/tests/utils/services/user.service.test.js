@@ -50,7 +50,7 @@ describe('PUT method', () => {
   test('should update single user', async () => {
     const ID = 2;
     fakeUser.id = ID;
-    const data = await userService.updateUser(ID, fakeUser);
+    const data = await userService.updateUser(fakeUser);
     expect(data).toBeDefined();
     expect(data).toMatchObject(fakeUser);
   })

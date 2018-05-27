@@ -4,34 +4,37 @@ import CustomFormField from "./CustomFormField";
 
 export default ({ user, disabled, actions }) => (
     <form>
+      <h5>User</h5>
       <CustomFormField
         value={user.name}
-        name={Object.keys(user)[1]}
+        name="name"
         disabled={disabled}
-        action={actions.handleChangeName}
+        action={actions.handleChangeProperty}
       />
       <CustomFormField
         value={user.username}
-        name={Object.keys(user)[2]}
+        name="username"
         disabled={disabled}
-        action={actions.handleChangeUserName}
+        action={actions.handleChangeProperty}
       />
       <CustomFormField
         value={user.email}
-        name={Object.keys(user)[3]}
+        name="email"
         disabled={disabled}
-        action={actions.handleChangeEmail}
+        action={actions.handleChangeProperty}
       />
+      <h5>Address</h5>
       <CustomFormField
         value={user.address.street}
-        name="street"
+        name="address.street"
         disabled={disabled}
-        action={actions.handleChangeStreet}
+        action={actions.handleChangeNestedProperty}
       />
       <CustomFormField
         value={user.address.suite}
-        name="suite"
-        disabled={true}
+        name="address.suite"
+        disabled={disabled}
+        action={actions.handleChangeNestedProperty}
       />
       <div className="form-row">
         <div className="form-group col-md-3">
@@ -39,8 +42,10 @@ export default ({ user, disabled, actions }) => (
           <input
             type="text"
             value={user.address.city}
+            name="address.city"
             className="form-control"
-            disabled={true}
+            disabled={disabled}
+            onChange={actions.handleChangeNestedProperty}
           />
         </div>
         <div className="form-group col-md-3">
@@ -48,8 +53,10 @@ export default ({ user, disabled, actions }) => (
           <input
             type="text"
             value={user.address.zipcode}
+            name="address.zipcode"
             className="form-control"
-            disabled={true}
+            disabled={disabled}
+            onChange={actions.handleChangeNestedProperty}
           />
         </div>
         <div className="form-group col-md-3">
@@ -57,8 +64,10 @@ export default ({ user, disabled, actions }) => (
           <input
             type="text"
             value={user.address.geo.lat}
+            name="address.geo.lat"
             className="form-control"
-            disabled={true}
+            disabled={disabled}
+            onChange={actions.handleChangeDoubleNestedProperty}
           />
         </div>
         <div className="form-group col-md-3">
@@ -66,27 +75,31 @@ export default ({ user, disabled, actions }) => (
           <input
             type="text"
             value={user.address.geo.lng}
+            name="address.geo.lng"
             className="form-control"
-            disabled={true}
+            disabled={disabled}
+            onChange={actions.handleChangeDoubleNestedProperty}
           />
         </div>
       </div>
       <CustomFormField
         value={user.phone}
-        name={Object.keys(user)[5]}
+        name="phone"
         disabled={disabled}
-        action={actions.handleChangePhone}
+        action={actions.handleChangeProperty}
       />
       <CustomFormField
         value={user.website}
-        name={Object.keys(user)[6]}
-        disabled={true}
+        name="website"
+        disabled={disabled}
+        action={actions.handleChangeProperty}
       />
+      <h5>Company</h5>
       <CustomFormField
         value={user.company.name}
-        name="company name"
+        name="company.name"
         disabled={disabled}
-        action={actions.handleChangeCompanyName}
+        action={actions.handleChangeNestedProperty}
       />
       <div className="form-row">
         <div className="form-group col-md-6">
@@ -94,8 +107,10 @@ export default ({ user, disabled, actions }) => (
           <input
             type="text"
             value={user.company.catchPhrase}
+            name="company.catchPhrase"
             className="form-control"
-            disabled={true}
+            disabled={disabled}
+            onChange={actions.handleChangeNestedProperty}
           />
         </div>
         <div className="form-group col-md-6">
@@ -103,8 +118,10 @@ export default ({ user, disabled, actions }) => (
           <input
             type="text"
             value={user.company.bs}
+            name="company.bs"
             className="form-control"
-            disabled={true}
+            disabled={disabled}
+            onChange={actions.handleChangeNestedProperty}
           />
         </div>
       </div>

@@ -13,8 +13,8 @@ const Header = ({ user, logout }) => (
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <CustomLink text="Dashboard" path="dashboard" />
-          <CustomLink text="Add New User" path="management" />
+          <CustomLink text="Dashboard" path="/dashboard" />
+          <CustomLink text="Add New User" path="/management" />
         </ul>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item dropdown mr-3">

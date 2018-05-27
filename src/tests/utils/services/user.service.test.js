@@ -1,7 +1,6 @@
-import { userService } from '../../../utils/services/user.service';
+import { userService } from "../../../utils/services/user.service";
 
 const fakeUser = {
-  id: Math.round(Math.random() * 10) + 10,
   name: "John Snow",
   username: "jsnow",
   email: "john.snow@gmail.com",
@@ -16,49 +15,70 @@ const fakeUser = {
     }
   },
   phone: "1223 123098",
-  website: "dwarfare.org",
+  website: "dwarfware.org",
   company: {
     name: "Stark",
     catchPhrase: "Winter is coming",
     bs: "xyz"
   }
-}
+};
 
-describe('GET method', () => {
-  test('should load all users', async () => {
-    const data = await userService.getUser();
-    expect(data).toBeDefined();
-    expect(data).toHaveLength(10);
+describe("User service methods", () => {
+  describe("login method", async () => {
+    test("should response with status correct while credentials are correct", async () => {
+      const user = "root";
+      const password = "root";
+      const {status} = await userService.login(user,password);
+      expect(status).toBe("correct")
+    });
+
+    test("should response with status invalid while credentials are invalid", async () => {
+      const user = "john";
+      const password = "snow";
+      const {status} = await userService.login(user,password);
+      expect(status).toBe("invalid")
+    });
   });
 
-  test('should load single user', async () => {
-    const data = await userService.getUser(1);
-    expect(data).toBeDefined();
-    expect(data.name).toEqual('Leanne Graham');
-  })
-});
+  describe("GET method", () => {
+    test("should load all users", async () => {
+      const data = await userService.getUser();
+      expect(data).toBeDefined();
+      expect(data).toHaveLength(10);
+    });
 
-describe('POST method', () => {
-  test('should post new user', async () => {
-    const data = await userService.createUser(fakeUser);
-    expect(data).toBeDefined();
-    expect(data).toMatchObject(fakeUser);
+    test("should load single user", async () => {
+      const expectedUser = "Leanne Graham";
+      const data = await userService.getUser(1);
+      expect(data).toBeDefined();
+      expect(data.name).toEqual(expectedUser);
+    });
   });
-});
 
-describe('PUT method', () => {
-  test('should update single user', async () => {
-    const ID = 2;
-    fakeUser.id = ID;
-    const data = await userService.updateUser(fakeUser);
-    expect(data).toBeDefined();
-    expect(data).toMatchObject(fakeUser);
-  })
-});
+  describe("POST method", () => {
+    test("should create new user", async () => {
+      const data = await userService.createUser(fakeUser);
+      expect(data).toBeDefined();
+      expect(data).toMatchObject(fakeUser);
+      expect(data.id).toBe(11);
+    });
+  });
 
-describe('DELETE method', () => {
-  test('should delete single user', async () => {
-    const data = await userService.deleteUser(1);
-    expect(data).toMatchObject({});
-  })
+  describe("PUT method", () => {
+    test("should update single user", async () => {
+      const id = 2;
+      const fakeUserWithId = { ...fakeUser, id };
+      const data = await userService.updateUser(fakeUserWithId);
+      expect(data).toBeDefined();
+      expect(data).toMatchObject(fakeUserWithId);
+    });
+  });
+
+  describe("DELETE method", () => {
+    test("should delete single user", async () => {
+      const id = 5;
+      const data = await userService.deleteUser(id);
+      expect(data).toMatchObject({});
+    });
+  });
 });

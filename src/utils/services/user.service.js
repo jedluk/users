@@ -39,10 +39,13 @@ const createUser = (data, url = API) => {
 };
 
 const updateUser = (data, url = API) => {
-  const combineURL = `${url}/${data.id}`;
+  const id = data.id;
+  const combineURL = `${url}/${id}`;
+  const userData = {...data};
+  delete userData.id;
   return new Promise((res, rej) => {
     axios
-      .put(combineURL, JSON.stringify(data), {
+      .put(combineURL, JSON.stringify(userData), {
         headers: {
           "Content-type": "application/json"
         }

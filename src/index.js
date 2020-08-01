@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import { logger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import AppRouter from './app/router/AppRouter';
-import style from "../src/app/styles/style.css";
-import img from '../src/app/styles/img/login.jpg';
 import rootReducer from './reducers';
 
-const middleware = applyMiddleware(logger);  
-const store = createStore(rootReducer, middleware)
+import './app/styles/style.css';
+// Boostrap imported via CDN
+
+const middleware = applyMiddleware(logger);
+const store = createStore(rootReducer, middleware);
 
 ReactDOM.render(
-  <Provider store={store} >
-    <AppRouter />
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );

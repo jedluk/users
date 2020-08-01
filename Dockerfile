@@ -2,19 +2,14 @@ FROM node:10-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
+COPY yarn.lock ./
 
-RUN npm install
-
+RUN yarn install
 ADD src /app/src
+ADD public /app/public
 
-COPY .babelrc ./
-RUN npm test
+RUN yarn build
 
-COPY webpack.config.js ./
-
-RUN npm run build:prod
-
-RUN npm install -g serve
-
-CMD ["serve", "-s", "dist", "-l", "4000"]
+RUN yarn global add serve
+CMD ["serve", "-s", "build", "-l", "4000"]

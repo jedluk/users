@@ -1,24 +1,20 @@
-import React, { Component } from "react";
-import Header from "../common/Header/Header";
-import Footer from "../common/Footer";
-import { Link } from "react-router-dom";
-import { userService } from "../../utils/services/user.service";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { userService } from '../../utils/services/user.service';
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: []
+      users: [],
     };
   }
 
   componentDidMount() {
     userService
       .getUser()
-      .then(data => {
-        this.setState({ users: data });
-      })
-      .catch(e => console.log(e));
+      .then((data) => this.setState({ users: data }))
+      .catch((e) => console.log(e));
   }
 
   render() {
@@ -43,7 +39,7 @@ export default class Dashboard extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.users.map(user => {
+                      {this.state.users.map((user) => {
                         return (
                           <tr key={user.id}>
                             <td>{user.id}</td>
@@ -55,11 +51,10 @@ export default class Dashboard extends Component {
                                 className="btn btn-secondary"
                                 to={{
                                   pathname: `/management/${user.id}`,
-                                  userId: user.id
+                                  userId: user.id,
                                 }}
                               >
-                                <i className="fa fa-angle-double-right" />{" "}
-                                Management
+                                <i className="fa fa-angle-double-right" /> Management
                               </Link>
                             </td>
                           </tr>
